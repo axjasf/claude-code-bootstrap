@@ -1,0 +1,227 @@
+# {{PROJECT_NAME}} UX Guide
+
+> **Purpose:** Single source of truth for visual and interaction design decisions. Reference this before any UI work.
+
+---
+
+## Design Philosophy
+
+<!-- CUSTOMIZE: Describe your app's modes/contexts and core principles -->
+
+{{PROJECT_NAME}} serves {{CONTEXT_DESCRIPTION}}.
+
+**Core principles:**
+- {{PRINCIPLE_1}}
+- {{PRINCIPLE_2}}
+- {{PRINCIPLE_3}}
+- Quality over speed (no hard deadlines driving shortcuts)
+
+---
+
+## Visual Hierarchy
+
+### Primary View
+
+<!-- CUSTOMIZE: Define information priority for your main view -->
+
+Priority order for information at a glance:
+
+1. **{{PRIMARY_INFO}}** (primary) - {{PRIMARY_DESCRIPTION}}
+2. **{{SECONDARY_INFO}}** (context) - {{SECONDARY_DESCRIPTION}}
+3. **{{TERTIARY_INFO}}** (secondary) - {{TERTIARY_DESCRIPTION}}
+
+```
+<!-- CUSTOMIZE: ASCII diagram of your primary view element -->
+┌─────────────────────────────────────┐
+│ {{PRIMARY_INFO}}                    │
+│ │                                   │
+│ │                         {{ICON}} │
+└─────────────────────────────────────┘
+```
+
+### Secondary View
+
+<!-- CUSTOMIZE: If you have multiple views, document each -->
+
+```
+┌─────────────────────────────────────┐
+│ {{ELEMENT_1}}  {{ELEMENT_2}}        │
+│    {{ELEMENT_3}}  │ {{ELEMENT_4}}   │
+└─────────────────────────────────────┘
+```
+
+---
+
+## Interaction Patterns
+
+### Hover-Reveal Actions
+
+<!-- CUSTOMIZE: Define what actions appear on hover -->
+
+Actions appear on hover, not always visible. Keeps UI clean.
+
+| Item State | Hover Actions |
+|------------|---------------|
+| **{{STATE_1}}** | {{ACTIONS_1}} |
+| **{{STATE_2}}** | {{ACTIONS_2}} |
+| **{{STATE_3}}** | {{ACTIONS_3}} |
+
+**Implementation:** {{HOVER_IMPLEMENTATION_NOTES}}
+
+### Click/Tap Behavior
+
+| Action | Result |
+|--------|--------|
+| Single click on item | {{SINGLE_CLICK_RESULT}} |
+| Double click on item | {{DOUBLE_CLICK_RESULT}} |
+| Long press | {{LONG_PRESS_RESULT}} |
+
+### Swipe Actions (if applicable)
+
+| Direction | Action |
+|-----------|--------|
+| Swipe right | {{SWIPE_RIGHT_ACTION}} |
+| Swipe left | {{SWIPE_LEFT_ACTION}} |
+
+---
+
+## Component Guidelines
+
+### When to Use Each Pattern
+
+| Pattern | Use When | Example |
+|---------|----------|---------|
+| **Sheet (modal)** | Complex multi-field editing | {{SHEET_EXAMPLE}} |
+| **Popover** | Quick glance, few actions | {{POPOVER_EXAMPLE}} |
+| **Inline expansion** | Single-field quick edit | {{INLINE_EXAMPLE}} |
+| **Panel (slide-in)** | Frequent editing, context needed | {{PANEL_EXAMPLE}} |
+
+### Sidebar
+
+<!-- CUSTOMIZE: If you have a sidebar, document it -->
+
+- Default width: {{SIDEBAR_WIDTH}}
+- **Collapse toggle:** {{COLLAPSE_BEHAVIOR}}
+- Always shows: {{SIDEBAR_CONTENTS}}
+
+### {{SPECIAL_COMPONENT}}
+
+<!-- CUSTOMIZE: Document any special components -->
+
+- **{{VIEW_1}}:** {{VIEW_1_PURPOSE}}
+- **{{VIEW_2}}:** {{VIEW_2_PURPOSE}}
+
+---
+
+## Color Language
+
+### Brand/Theme Colors
+
+<!-- CUSTOMIZE: Document your color system -->
+
+| Color | Usage |
+|-------|-------|
+| **{{COLOR_1}}** | {{COLOR_1_USAGE}} |
+| **{{COLOR_2}}** | {{COLOR_2_USAGE}} |
+| **{{COLOR_3}}** | {{COLOR_3_USAGE}} |
+
+**Rule:** {{COLOR_RULE}}
+
+### State Indicators
+
+States are communicated via **icons and badges**, not color modification:
+
+| State | Indicator |
+|-------|-----------|
+| {{STATE_1}} | {{INDICATOR_1}} |
+| {{STATE_2}} | {{INDICATOR_2}} |
+| {{STATE_3}} | {{INDICATOR_3}} |
+| {{STATE_4}} | {{INDICATOR_4}} |
+
+### Multi-State Example
+
+<!-- CUSTOMIZE: Show how multiple states combine -->
+
+{{ITEM_DESCRIPTION}} that is: {{STATE_COMBO}}
+
+```
+┌─────────────────────────────────────┐
+│ │ {{EXAMPLE_CONTENT}}               │
+│ │ {{EXAMPLE_NOTES}}                 │
+└─┴───────────────────────────────────┘
+  ↑ {{EXPLANATION}}
+```
+
+---
+
+## Feedback Patterns
+
+### Success Feedback
+
+<!-- CUSTOMIZE: Document success feedback patterns -->
+
+1. {{SUCCESS_STEP_1}}
+2. {{SUCCESS_STEP_2}}
+3. {{SUCCESS_STEP_3}}
+
+### Undo
+
+All destructive actions show toast with Undo:
+- {{UNDO_ACTION_1}}
+- {{UNDO_ACTION_2}}
+- {{UNDO_ACTION_3}}
+
+Toast duration: {{TOAST_DURATION}}, dismissable.
+
+### Errors
+
+{{ERROR_HANDLING_APPROACH}}
+
+---
+
+## View-Specific Guidelines
+
+### {{VIEW_NAME}}
+
+<!-- CUSTOMIZE: Document any view-specific patterns -->
+
+#### Visual Density
+
+{{VIEW_NAME}} can get busy with many items. Strategies:
+
+1. **{{STRATEGY_1}}** - {{STRATEGY_1_DESCRIPTION}}
+2. **{{STRATEGY_2}}** - {{STRATEGY_2_DESCRIPTION}}
+3. **{{STRATEGY_3}}** - {{STRATEGY_3_DESCRIPTION}}
+
+#### Special Cases
+
+<!-- CUSTOMIZE: Document edge cases -->
+
+When {{EDGE_CASE_CONDITION}}:
+
+- {{EDGE_CASE_BEHAVIOR}}
+- *Alternative considered but rejected: {{REJECTED_ALTERNATIVE}} ({{REJECTION_REASON}})*
+
+#### {{VIEW_SPECIFIC_ELEMENT}}
+
+{{VIEW_SPECIFIC_ELEMENT_DESCRIPTION}}
+
+---
+
+## Accessibility (Future)
+
+Not current priority, but design with these in mind:
+
+- Color should never be the only indicator (always pair with icon/text)
+- Hover actions need keyboard equivalent
+- {{ACCESSIBILITY_FRAMEWORK}} labels for all interactive elements
+
+---
+
+## Decision Log Reference
+
+For product/UX decisions and their rationale, see the **Decisions Log** section in `DEVELOPMENT_STRATEGY.md`.
+
+---
+
+*Last updated: {{DATE}}*

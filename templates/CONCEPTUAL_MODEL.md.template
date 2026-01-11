@@ -1,0 +1,317 @@
+# {{PROJECT_NAME}} Conceptual Model
+
+## Philosophy
+
+<!-- CUSTOMIZE: Describe what your app IS and ISN'T -->
+
+{{PROJECT_NAME}} is a **{{PROJECT_TYPE}}**. It helps {{TARGET_USER}} {{CORE_VALUE}}.
+
+**It is NOT:**
+- {{NOT_1}}
+- {{NOT_2}}
+- {{NOT_3}}
+
+**It IS:**
+- {{IS_1}}
+- {{IS_2}}
+- {{IS_3}}
+
+---
+
+## The Building Blocks
+
+### 1. {{CONCEPT_1}} ({{SOURCE}})
+
+<!-- CUSTOMIZE: Describe your first core concept -->
+
+{{CONCEPT_1_PLURAL}} are the **{{CONCEPT_1_ROLE}}**. They {{CONCEPT_1_DESCRIPTION}}.
+
+- **{{SUBCONCEPT_1A}}**: {{SUBCONCEPT_1A_DESCRIPTION}}
+- **{{SUBCONCEPT_1B}}**: {{SUBCONCEPT_1B_DESCRIPTION}}
+
+{{CONCEPT_1_NOTE}}
+
+---
+
+### 2. {{CONCEPT_2}} ({{SOURCE}})
+
+<!-- CUSTOMIZE: Describe your second core concept -->
+
+{{CONCEPT_2_PLURAL}} are **{{CONCEPT_2_ROLE}}**. {{CONCEPT_2_DESCRIPTION}}.
+
+```
+{{CONCEPT_2_NAME}} "{{EXAMPLE_NAME}}"
+  └── {{PROPERTY_1}}: {{PROPERTY_1_VALUE}}
+  └── {{PROPERTY_2}}: {{PROPERTY_2_VALUE}}
+```
+
+**What they do:**
+- {{WHAT_THEY_DO_1}}
+- {{WHAT_THEY_DO_2}}
+- {{WHAT_THEY_DO_3}}
+
+**What they DON'T do:**
+- {{WHAT_THEY_DONT_1}}
+- {{WHAT_THEY_DONT_2}}
+
+---
+
+### 3. {{CONCEPT_3}} ({{SOURCE}})
+
+<!-- CUSTOMIZE: Describe your third core concept -->
+
+{{CONCEPT_3_PLURAL}} are **{{CONCEPT_3_ROLE}}**. They {{CONCEPT_3_DESCRIPTION}}.
+
+Each {{CONCEPT_3_SINGULAR}} has:
+
+```
+{{CONCEPT_3_NAME}} "{{EXAMPLE_NAME}}"
+  │
+  ├── {{PROPERTY_1}}: "{{PROPERTY_1_VALUE}}"          ← {{PROPERTY_1_EXPLANATION}}
+  │
+  └── {{PROPERTY_2}}: ["{{PROPERTY_2_VALUE}}"]        ← {{PROPERTY_2_EXPLANATION}}
+```
+
+#### {{SUBHEADING_1}}
+
+The **{{FIELD_NAME}}** answers: "{{FIELD_QUESTION}}"
+
+- {{FIELD_POINT_1}}
+- {{FIELD_POINT_2}}
+- {{FIELD_POINT_3}}
+
+#### {{SUBHEADING_2}}
+
+**{{FIELD_2_NAME}}** answers: "{{FIELD_2_QUESTION}}"
+
+- {{FIELD_2_POINT_1}}
+- {{FIELD_2_POINT_2}}
+
+---
+
+### 4. {{CONCEPT_4}} ({{SOURCE}})
+
+<!-- CUSTOMIZE: Describe your fourth core concept (if applicable) -->
+
+{{CONCEPT_4_PLURAL}} are **{{CONCEPT_4_ROLE}}**.
+
+```
+{{CONCEPT_4_NAME}} "{{EXAMPLE_NAME}}"
+  │
+  ├── {{SECTION_1}}
+  │   └── {{SECTION_1_DETAIL}}
+  │
+  └── {{SECTION_2}}
+      ├── {{SECTION_2_DETAIL_1}}
+      ├── {{SECTION_2_DETAIL_2}}
+      └── {{SECTION_2_DETAIL_3}}
+```
+
+{{CONCEPT_4_SUMMARY}}
+
+---
+
+## How {{PROCESS_1}} Works
+
+<!-- CUSTOMIZE: Explain a key process with a visual diagram -->
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                                                                 │
+│   {{CONTEXT_TITLE}}: "{{CONTEXT_EXAMPLE}}"                      │
+│   ({{CONTEXT_DESCRIPTION}})                                     │
+│                                                                 │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   {{SECTION_1_TITLE}}:                                          │
+│   ✓ "{{EXAMPLE_1}}" ({{CONDITION_1}})                           │
+│   ✓ "{{EXAMPLE_2}}" ({{CONDITION_2}})                           │
+│   ✗ "{{EXAMPLE_3}}" ({{CONDITION_3}}) — {{REASON}}              │
+│                                                                 │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   {{SECTION_2_TITLE}}:                                          │
+│   ✓ "{{EXAMPLE_4}}" ({{CONDITION_4}}) — {{RESULT_1}}            │
+│   ✗ "{{EXAMPLE_5}}" ({{CONDITION_5}}) — {{RESULT_2}}            │
+│                                                                 │
+│   {{SPECIAL_CASE_TITLE}}:                                       │
+│   ✓ {{SPECIAL_CASE_DESCRIPTION}}                                │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+**The rule:** {{PROCESS_1_RULE}}
+
+---
+
+## How {{PROCESS_2}} Works
+
+### {{PROCESS_2_MODE_1}}
+
+{{PROCESS_2_MODE_1_DESCRIPTION}}
+
+**{{CONSTRAINT_TITLE}}:** {{CONSTRAINT_DESCRIPTION}}
+
+```
+{{CONTEXT_EXAMPLE}}
+
+{{ITEM_1}} ({{ITEM_1_PROPERTY}})
+  └── {{ITEM_1_RESULT}} — {{ITEM_1_REASON}}
+
+{{ITEM_2}} ({{ITEM_2_PROPERTY}})
+  └── {{ITEM_2_RESULT}} — {{ITEM_2_REASON}}
+```
+
+**Why?** {{RATIONALE}}
+
+---
+
+### {{PROCESS_2_MODE_2}} ({{FUTURE_PHASE}})
+
+<!-- CUSTOMIZE: If you have a future/advanced process -->
+
+The {{PROCESS_2_MODE_2_AGENT}} {{PROCESS_2_MODE_2_DESCRIPTION}}:
+
+1. **{{STEP_1_NAME}}** — {{STEP_1_DESCRIPTION}}
+2. **{{STEP_2_NAME}}** — {{STEP_2_DESCRIPTION}}
+3. **{{STEP_3_NAME}}** — {{STEP_3_DESCRIPTION}}
+4. **{{STEP_4_NAME}}** — {{STEP_4_DESCRIPTION}}
+5. **{{STEP_5_NAME}}** — {{STEP_5_DESCRIPTION}}
+
+```
+{{PROCESS_2_MODE_2_EXAMPLE}}
+```
+
+**Key insight:** {{PROCESS_2_MODE_2_INSIGHT}}
+
+---
+
+## The Complete Picture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  {{CONCEPT_1_UPPER}}                                            │
+│  {{DIVIDER}}                                                    │
+│  {{CONCEPT_1_SUMMARY}}.                                         │
+│  "{{CONCEPT_1_QUESTION}}"                                       │
+│                                                                 │
+│  • {{CONCEPT_1_POINT_1}}                                        │
+│  • {{CONCEPT_1_POINT_2}}                                        │
+│  • {{CONCEPT_1_POINT_3}}                                        │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+            {{RELATIONSHIP_1}}
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  {{CONCEPT_2_UPPER}}                                            │
+│  {{DIVIDER}}                                                    │
+│  {{CONCEPT_2_SUMMARY}}.                                         │
+│  "{{CONCEPT_2_QUESTION}}"                                       │
+│                                                                 │
+│  • {{CONCEPT_2_POINT_1}}                                        │
+│  • {{CONCEPT_2_POINT_2}}                                        │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                 {{RELATIONSHIP_2}}
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  {{CONCEPT_3_UPPER}}                                            │
+│  {{DIVIDER}}                                                    │
+│  {{CONCEPT_3_SUMMARY}}.                                         │
+│                                                                 │
+│  • {{CONCEPT_3_POINT_1}}                                        │
+│  • {{CONCEPT_3_POINT_2}}                                        │
+│  • {{CONCEPT_3_POINT_3}}                                        │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+              {{RELATIONSHIP_3}}
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  {{CONCEPT_4_UPPER}}                                            │
+│  {{DIVIDER}}                                                    │
+│  {{CONCEPT_4_SUMMARY}}.                                         │
+│                                                                 │
+│  • {{CONCEPT_4_POINT_1}}                                        │
+│  • {{CONCEPT_4_POINT_2}}                                        │
+│  • {{CONCEPT_4_POINT_3}}                                        │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Quick Reference
+
+| Concept | Purpose | {{RELATIONSHIP_COLUMN}} |
+|---------|---------|{{COLUMN_DIVIDER}}|
+| **{{CONCEPT_1}}** | {{CONCEPT_1_PURPOSE}} | {{CONCEPT_1_RELATIONSHIP}} |
+| **{{CONCEPT_2}}** | {{CONCEPT_2_PURPOSE}} | {{CONCEPT_2_RELATIONSHIP}} |
+| **{{CONCEPT_3}}** | {{CONCEPT_3_PURPOSE}} | {{CONCEPT_3_RELATIONSHIP}} |
+| **{{CONCEPT_4}}** | {{CONCEPT_4_PURPOSE}} | {{CONCEPT_4_RELATIONSHIP}} |
+
+| {{PROCESS_MODE}} | What it considers |
+|{{MODE_DIVIDER}}|-------------------|
+| **{{MODE_1}}** | {{MODE_1_CONSIDERATION}} |
+| **{{MODE_2}}** | {{MODE_2_CONSIDERATION}} |
+
+---
+
+## Data Model
+
+<!-- CUSTOMIZE: Show your actual data model -->
+
+```swift
+@Model class {{MODEL_1}} {
+    var id: UUID
+    var {{FIELD_1}}: {{TYPE_1}}
+    var {{FIELD_2}}: {{TYPE_2}}
+
+    // {{SECTION_1_COMMENT}}
+    var {{FIELD_3}}: {{TYPE_3}}?
+    var {{FIELD_4}}: [{{TYPE_4}}]
+
+    // {{SECTION_2_COMMENT}}
+    var {{FIELD_5}}: UUID?
+
+    // {{SECTION_3_COMMENT}}
+    var {{FIELD_6}}: Date?
+    var {{FIELD_7}}: Date?
+
+    // ... other fields
+}
+
+@Model class {{MODEL_2}} {
+    var id: UUID
+    var {{FIELD_1}}: {{TYPE_1}}
+    var {{FIELD_2}}: {{TYPE_2}}?
+
+    // {{SECTION_COMMENT}}
+    var {{FIELD_3}}: [Int]?
+    var {{FIELD_4}}: Int?
+    var {{FIELD_5}}: Int?
+    // ...
+}
+
+@Model class {{MODEL_3}} {
+    var id: UUID
+    var {{FIELD_1}}: {{TYPE_1}}
+    var {{FIELD_2}}: [{{TYPE_2}}]
+}
+```
+
+---
+
+## Summary
+
+<!-- CUSTOMIZE: One-line summaries of each concept -->
+
+**{{CONCEPT_1}}** = "{{CONCEPT_1_QUESTION}}" ({{CONCEPT_1_ROLE}})
+
+**{{CONCEPT_2}}** = "{{CONCEPT_2_QUESTION}}" ({{CONCEPT_2_ROLE}})
+
+**{{CONCEPT_3}}** = "{{CONCEPT_3_QUESTION}}" ({{CONCEPT_3_ROLE}})
+
+**{{CONCEPT_4}}** = "{{CONCEPT_4_QUESTION}}" ({{CONCEPT_4_ROLE}})
+
+---
+
+*{{TAGLINE}}*

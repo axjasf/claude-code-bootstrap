@@ -1,0 +1,298 @@
+# {{PROJECT_NAME}} Architecture Guide
+
+> **Purpose:** This document provides a comprehensive architectural overview of {{PROJECT_NAME}}, structured for both human developers and AI coding assistants. The first sections are human-readable overviews; later sections contain detailed technical specifications optimized for agentic AI systems like Claude Code.
+
+---
+
+## Table of Contents
+
+1. [Executive Summary](#executive-summary)
+2. [Key Concepts](#key-concepts)
+3. [Project Structure](#project-structure)
+4. [Architecture Overview](#architecture-overview)
+5. [Data Models](#data-models)
+6. [View Hierarchy](#view-hierarchy)
+7. [State Management](#state-management)
+8. [Services](#services)
+9. [Code Patterns](#code-patterns)
+10. [Known Issues & Technical Debt](#known-issues--technical-debt)
+11. [Testing Guidance](#testing-guidance)
+
+---
+
+## Executive Summary
+
+<!-- CUSTOMIZE: Replace with your project description -->
+
+**{{PROJECT_NAME}}** is a {{PLATFORM}} app built with {{UI_FRAMEWORK}} that {{CORE_FUNCTIONALITY}}.
+
+### Technology Stack
+
+| Layer | Technology |
+|-------|------------|
+| UI | {{UI_FRAMEWORK}} |
+| Data | {{DATA_LAYER}} |
+| External APIs | {{EXTERNAL_APIS}} |
+| Architecture | {{ARCHITECTURE_PATTERN}} |
+| State | {{STATE_MANAGEMENT}} |
+
+### Current Phase
+
+See `DEVELOPMENT_STRATEGY.md` for the full roadmap.
+
+### Key Features
+
+<!-- CUSTOMIZE: List your app's main features -->
+
+- **{{FEATURE_1}}:** {{FEATURE_1_DESCRIPTION}}
+- **{{FEATURE_2}}:** {{FEATURE_2_DESCRIPTION}}
+- **{{FEATURE_3}}:** {{FEATURE_3_DESCRIPTION}}
+
+---
+
+## Key Concepts
+
+### The Mental Model
+
+<!-- CUSTOMIZE: Create a diagram showing how your core concepts relate -->
+
+```
+{{CONCEPT_DIAGRAM}}
+```
+
+### {{CONCEPT_A}} vs {{CONCEPT_B}}
+
+<!-- CUSTOMIZE: If you have similar concepts, clarify differences -->
+
+| Aspect | {{CONCEPT_A}} | {{CONCEPT_B}} |
+|--------|---------------|---------------|
+| Source | {{SOURCE_A}} | {{SOURCE_B}} |
+| Behavior | {{BEHAVIOR_A}} | {{BEHAVIOR_B}} |
+| Storage | {{STORAGE_A}} | {{STORAGE_B}} |
+
+---
+
+## Project Structure
+
+<!-- CUSTOMIZE: Replace with your actual project structure -->
+
+```
+{{PROJECT_NAME}}/
+├── {{ENTRY_POINT}}                     # App entry point
+├── {{MAIN_VIEW}}                       # Main window/view
+│
+├── Models/                             # Data models
+│   ├── {{MODEL_1}}.swift               # {{MODEL_1_PURPOSE}}
+│   ├── {{MODEL_2}}.swift               # {{MODEL_2_PURPOSE}}
+│   └── {{MODEL_3}}.swift               # {{MODEL_3_PURPOSE}}
+│
+├── Views/                              # UI views
+│   ├── {{VIEW_1}}.swift                # {{VIEW_1_PURPOSE}}
+│   ├── {{VIEW_2}}.swift                # {{VIEW_2_PURPOSE}}
+│   └── {{VIEW_3}}.swift                # {{VIEW_3_PURPOSE}}
+│
+├── Components/                         # Reusable UI components
+│   ├── {{COMPONENT_1}}.swift           # {{COMPONENT_1_PURPOSE}}
+│   └── {{COMPONENT_2}}.swift           # {{COMPONENT_2_PURPOSE}}
+│
+├── Services/                           # Business logic
+│   ├── {{SERVICE_1}}.swift             # {{SERVICE_1_PURPOSE}}
+│   └── {{SERVICE_2}}.swift             # {{SERVICE_2_PURPOSE}}
+│
+└── Utilities/                          # Helper functions
+    └── {{UTILITY_1}}.swift             # {{UTILITY_1_PURPOSE}}
+```
+
+---
+
+## Architecture Overview
+
+### Pattern: {{ARCHITECTURE_PATTERN}}
+
+<!-- CUSTOMIZE: Describe your architecture pattern -->
+
+```
+{{ARCHITECTURE_DIAGRAM}}
+```
+
+### Data Flow
+
+<!-- CUSTOMIZE: Explain how data flows through your app -->
+
+1. **{{STEP_1}}** - {{STEP_1_DESCRIPTION}}
+2. **{{STEP_2}}** - {{STEP_2_DESCRIPTION}}
+3. **{{STEP_3}}** - {{STEP_3_DESCRIPTION}}
+
+---
+
+## Data Models
+
+### {{MODEL_NAME}}
+
+<!-- CUSTOMIZE: Document each major model -->
+
+```swift
+// Example model structure
+@Model
+class {{MODEL_NAME}} {
+    var id: UUID
+    var {{PROPERTY_1}}: {{TYPE_1}}
+    var {{PROPERTY_2}}: {{TYPE_2}}
+
+    // Computed properties
+    var {{COMPUTED_PROPERTY}}: {{COMPUTED_TYPE}} {
+        // Logic here
+    }
+}
+```
+
+**Key patterns:**
+- {{PATTERN_1}}
+- {{PATTERN_2}}
+
+---
+
+## View Hierarchy
+
+<!-- CUSTOMIZE: Document your view structure -->
+
+```
+{{ROOT_VIEW}}
+├── {{CHILD_VIEW_1}}
+│   ├── {{GRANDCHILD_1}}
+│   └── {{GRANDCHILD_2}}
+├── {{CHILD_VIEW_2}}
+│   └── {{GRANDCHILD_3}}
+└── {{CHILD_VIEW_3}}
+```
+
+### View Responsibilities
+
+| View | Responsibility |
+|------|----------------|
+| {{VIEW_1}} | {{VIEW_1_RESPONSIBILITY}} |
+| {{VIEW_2}} | {{VIEW_2_RESPONSIBILITY}} |
+| {{VIEW_3}} | {{VIEW_3_RESPONSIBILITY}} |
+
+---
+
+## State Management
+
+### Three-Tier Model
+
+<!-- CUSTOMIZE: Describe your state management approach -->
+
+| Tier | What | How | When to Use |
+|------|------|-----|-------------|
+| **Local** | View-specific state | `@State`, `@Binding` | UI state that doesn't need to persist |
+| **Shared** | Cross-view state | `@EnvironmentObject`, `@ObservedObject` | State shared between views |
+| **Persistent** | Saved data | {{PERSISTENCE_APPROACH}} | Data that survives app restart |
+
+---
+
+## Services
+
+### {{SERVICE_NAME}}
+
+<!-- CUSTOMIZE: Document each service -->
+
+**Purpose:** {{SERVICE_PURPOSE}}
+
+**Key Methods:**
+- `{{METHOD_1}}()` - {{METHOD_1_DESCRIPTION}}
+- `{{METHOD_2}}()` - {{METHOD_2_DESCRIPTION}}
+
+**Usage:**
+```swift
+// Example usage
+let service = {{SERVICE_NAME}}()
+let result = service.{{METHOD_1}}()
+```
+
+---
+
+## Code Patterns
+
+### Pattern 1: {{PATTERN_NAME}}
+
+<!-- CUSTOMIZE: Document patterns used in your codebase -->
+
+**When to use:** {{PATTERN_USE_CASE}}
+
+**Example:**
+```swift
+// Code example here
+```
+
+### Pattern 2: {{PATTERN_2_NAME}}
+
+**When to use:** {{PATTERN_2_USE_CASE}}
+
+**Example:**
+```swift
+// Code example here
+```
+
+---
+
+## Known Issues & Technical Debt
+
+<!-- CUSTOMIZE: Track technical debt -->
+
+| Location | Issue | Impact | Priority | Recommendation |
+|----------|-------|--------|----------|----------------|
+| `{{FILE_1}}` | {{ISSUE_1}} | {{IMPACT_1}} | {{P1/P2/P3}} | {{RECOMMENDATION_1}} |
+| `{{FILE_2}}` | {{ISSUE_2}} | {{IMPACT_2}} | {{P1/P2/P3}} | {{RECOMMENDATION_2}} |
+
+---
+
+## Testing Guidance
+
+### Build Commands
+
+```bash
+# Build
+{{BUILD_COMMAND}}
+
+# Run tests
+{{TEST_COMMAND}}
+
+# Lint
+{{LINT_COMMAND}}
+```
+
+### Manual Testing Checklist
+
+<!-- CUSTOMIZE: Add your testing checklist -->
+
+- [ ] {{TEST_CASE_1}}
+- [ ] {{TEST_CASE_2}}
+- [ ] {{TEST_CASE_3}}
+
+### Test Coverage
+
+| Area | Coverage | Notes |
+|------|----------|-------|
+| {{AREA_1}} | {{COVERAGE_1}} | {{NOTES_1}} |
+| {{AREA_2}} | {{COVERAGE_2}} | {{NOTES_2}} |
+
+---
+
+## Appendix: Quick Reference
+
+### Most-Modified Files
+
+<!-- CUSTOMIZE: List frequently-changed files -->
+
+| File | Purpose | When to Modify |
+|------|---------|----------------|
+| `{{FILE_1}}` | {{PURPOSE_1}} | {{WHEN_1}} |
+| `{{FILE_2}}` | {{PURPOSE_2}} | {{WHEN_2}} |
+
+### Important Constants
+
+<!-- CUSTOMIZE: Document magic numbers and constants -->
+
+| Constant | Value | Location | Purpose |
+|----------|-------|----------|---------|
+| `{{CONSTANT_1}}` | `{{VALUE_1}}` | `{{LOCATION_1}}` | {{PURPOSE_1}} |

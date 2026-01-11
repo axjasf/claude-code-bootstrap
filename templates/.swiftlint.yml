@@ -1,0 +1,48 @@
+# SwiftLint Configuration Template
+#
+# Philosophy: Start lenient, tighten over time.
+# The || true in CI means violations are reported but don't fail the build.
+# Once your codebase is clean, remove || true for strict enforcement.
+#
+# Customize thresholds based on your project's maturity:
+#   - New project: Use stricter values (e.g., function_body_length: 40/60)
+#   - Legacy project: Start lenient, improve incrementally
+
+# Disabled rules (can enable incrementally)
+disabled_rules:
+  - line_length  # Often too restrictive for SwiftUI; enable when ready
+
+# Opt-in rules (important quality checks)
+opt_in_rules:
+  - force_unwrapping          # Catch force unwraps
+  - implicitly_unwrapped_optional  # Catch implicitly unwrapped optionals
+  - empty_count               # Prefer isEmpty over count == 0
+  - unused_optional_binding   # Catch unused let/var in optional binding
+
+# Excluded paths
+# CUSTOMIZE: Replace with your project name
+excluded:
+  - "*.xcodeproj"   # Exclude Xcode project files
+  - .build          # Swift Package Manager build directory
+  - build           # General build directory
+  - Pods            # CocoaPods directory (if used)
+  - Carthage        # Carthage directory (if used)
+  - vendor          # Vendor directory
+
+# Rule configurations
+# CUSTOMIZE: Adjust thresholds based on your codebase
+function_body_length:
+  warning: 60   # Start with warning at 60 lines
+  error: 100    # Error at 100 lines
+
+file_length:
+  warning: 500  # Start with warning at 500 lines
+  error: 1000   # Error at 1000 lines
+
+cyclomatic_complexity:
+  warning: 10   # Moderate complexity warning
+  error: 20     # High complexity error
+
+# Reporter for local development
+# CI workflow uses github-actions-logging reporter
+reporter: "xcode"
