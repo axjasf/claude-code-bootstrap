@@ -101,7 +101,7 @@ Ensures CI/CD health. Verify build passes, tests pass, lint is clean. Flag infra
 Senior reviewer with end-to-end perspective. Familiarize deeply with repo, instructions, architecture, codebase. Reviews PRs for logic correctness, architectural fit, no regressions, feature completeness. Recommends merge after verification.
 
 **ReqsEng:**
-Defines requirements. Clarifies user needs, writes acceptance criteria, resolves ambiguity before development starts.
+Defines requirements. Clarifies user needs, writes acceptance criteria, resolves ambiguity before development starts. Use the AskUserQuestion tool iteratively to discuss and refine requirements with the user.
 
 ### Handoff Prompts
 
