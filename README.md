@@ -49,6 +49,7 @@ cp templates/.github/workflows/ci-macos-swift.yml .github/workflows/ci.yml
 | File | Purpose |
 |------|---------|
 | `scripts/setup-github-labels.sh` | Creates standardized GitHub labels |
+| `scripts/pre-commit-check.sh` | Quality gate helper (lint, test, debug check) |
 | `templates/.github/workflows/ci-macos-swift.yml` | CI workflow for Swift/macOS projects |
 | `templates/.swiftlint.yml` | Swift linting configuration |
 
@@ -106,6 +107,12 @@ The workflow ensures humans stay in control:
 Documented workflows for both:
 - **Claude agents** - Session rules, handoff protocol
 - **Human developers** - Branch types, naming conventions, commit format
+
+### Plan Mode & Quality Gates
+
+- **Plan mode workflow** - Use `/plan` for non-trivial implementations
+- **Pre-commit quality gates** - Verify build, tests, lint before committing
+- **YAGNI principle** - Implement only what's requested
 
 ---
 
@@ -167,7 +174,8 @@ This kit embodies these principles:
 claude-code-bootstrap/
 ├── README.md                              # This file
 ├── scripts/
-│   └── setup-github-labels.sh             # Label creation automation
+│   ├── setup-github-labels.sh             # Label creation automation
+│   └── pre-commit-check.sh                # Quality gate helper
 └── templates/
     ├── CLAUDE.md.template                 # AI collaboration workflow
     ├── DEVELOPMENT_STRATEGY.md.template   # Product roadmap structure

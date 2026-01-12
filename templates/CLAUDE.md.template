@@ -329,11 +329,38 @@ Configuration in `{{LINTER_CONFIG_FILE}}`.
 - Ask before major UX/product decisions - don't assume
 - Update `DEVELOPMENT_STRATEGY.md` as work completes
 - During UX work: implement → show screenshot → iterate based on feedback
+- Prefer extending existing code over creating new files
+- YAGNI: implement only what's requested, avoid speculative features
 
 **Communication:**
 - Be concise, direct
 - Show options when there are trade-offs
 - When user says "perfect" or similar, task is done - don't over-elaborate
+
+## Plan Mode Workflow
+
+For non-trivial implementations, use Claude Code's plan mode:
+
+1. Use `/plan` command to enter plan mode
+2. Review/create a plan covering:
+   - Context (related issues, dependencies)
+   - Implementation steps with file locations
+   - Decisions requiring approval
+3. Get human approval before coding
+4. Reference plan in commits if helpful
+
+If the plan needs to change significantly during implementation, pause and get approval.
+
+## Pre-Commit Quality Gates
+
+Before committing, verify:
+
+1. **Build passes** - Code compiles without errors
+2. **Tests pass** - No regressions introduced
+3. **Lint clean** - No new violations (or only pre-existing ones)
+4. **No debug code** - Remove console.log, print statements, etc.
+
+Run `./scripts/pre-commit-check.sh` if available.
 
 ## Key Documents
 
