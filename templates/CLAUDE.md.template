@@ -86,6 +86,23 @@ Each role must prompt the user with the next role after completing their work.
 | **BuildEng** | CI/CD health | Build passes, tests pass, lint clean |
 | **Architect** | **End-to-end** | Logic correctness, architectural fit, no regressions, feature completeness |
 
+### Role Definitions
+
+**Staff Developer:**
+Owns implementation. Familiarize deeply with CLAUDE.md, all process/strategy/decision/UX guidance files, architecture docs, and the codebase. You drive development forward, write code, create PRs.
+
+**TestEng:**
+Reviews test coverage and quality. Verify edge cases are covered, tests are meaningful (not just checking "truthy"), and the test strategy is sound.
+
+**BuildEng:**
+Ensures CI/CD health. Verify build passes, tests pass, lint is clean. Flag infrastructure issues or flaky tests.
+
+**Chief Architect:**
+Senior reviewer with end-to-end perspective. Familiarize deeply with repo, instructions, architecture, codebase. Reviews PRs for logic correctness, architectural fit, no regressions, feature completeness. Recommends merge after verification.
+
+**ReqsEng:**
+Defines requirements. Clarifies user needs, writes acceptance criteria, resolves ambiguity before development starts.
+
 ### Handoff Prompts
 
 After completing your work, end your message with the appropriate prompt:

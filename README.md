@@ -59,7 +59,7 @@ cp templates/.github/workflows/ci-macos-swift.yml .github/workflows/ci.yml
 
 ### Role Handoff Protocol
 
-A proven 4-role workflow for AI-assisted development:
+A 4-role workflow for AI-assisted development:
 
 ```
 ┌─────────┐    ┌──────────┐    ┌──────────┐    ┌────────────────────┐
@@ -202,4 +202,4 @@ MIT License - Use freely in your projects.
 
 ---
 
-*Bootstrap your projects with proven Claude Code workflows.*
+*Bootstrap your projects with structured Claude Code workflows.*
