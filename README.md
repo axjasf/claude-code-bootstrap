@@ -2,6 +2,8 @@
 
 A template kit for bootstrapping new projects with Claude Code workflows, CI/CD pipelines, and GitHub Issues integration.
 
+This repository captures a lightweight, opinionated baseline for working with Claude in professional software environments. It focuses less on prompts and more on structure: human approval gates, task handoff discipline, and workflows that can survive real-world use rather than demos.
+
 ---
 
 ## Quick Start
