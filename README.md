@@ -1,19 +1,31 @@
 # Claude Code Project Bootstrap Kit
 
-**v2.0 - The AI Code Review System That Actually Catches Bugs**
+A template kit for bootstrapping projects with Claude Code workflows.
 
-Stop having AI review its own work. v2.0 introduces **context isolation** — your Architect reviews code independently, without seeing Dev's reasoning. Plus **memory accumulation** means the system learns your project's patterns and catches more bugs over time.
+## What v2.0 Adds
 
-### The Problem with Standard AI Code Review
+### Orchestrator System
+An automated workflow coordinator that routes tasks through specialized roles:
+- Classifies work into tracks (Full/Standard/Fast/Minimal) based on complexity
+- Shows an execution graph at task start
+- Auto-proceeds between steps, pausing only at human decision points
+- Manages artifact handoff between roles
 
-When the same AI agent writes code and reviews it, you get rubber-stamp approvals. The agent sees all its own reasoning, assumptions, and shortcuts. It can't catch what it doesn't know it missed.
+### Context Isolation
+The Architect role is spawned as a separate agent without access to Dev's reasoning or planning context. This prevents self-review bias — the Architect sees only the code and specs, reviewing as an outsider would.
 
-### v2.0 Solves This
+### Adversarial Review
+The Architect operates with an adversarial mindset: assume bugs exist, find them. Reviews include mandatory checklists, auto-reject rules, and specific line-number feedback.
 
-- **Independent Reviews** — Architect spawned in isolated context, reviews as a stranger would
-- **Automated Orchestration** — `/do` command routes work through roles, humans focus on decisions
-- **Learning System** — Memory accumulates anti-patterns, auto-reject rules, common code smells
-- **Right-Sized Review** — Complex features get full scrutiny, trivial fixes get fast paths
+### Memory Accumulation
+`ARCHITECT_MEMORY.md` grows over time with:
+- Project-specific patterns to enforce
+- Auto-reject rules for common mistakes
+- Findings log from past reviews
+- Code smell catalog
+
+### Cross-Session State
+`STATE.md` tracks active work, recent decisions, blockers, and handoff context so sessions can resume cleanly.
 
 ---
 
@@ -38,38 +50,40 @@ cp templates/ORCHESTRATION.md.template ORCHESTRATION.md
 ./scripts/setup-github-labels.sh
 
 # 5. Replace {{PLACEHOLDERS}} with your project-specific content
-# 6. Commit and start using /do
 ```
 
 ---
 
 ## What's Included
 
-### v2.0 Orchestration System
+### Orchestration System (`.claude/`)
 
 | File | Purpose |
 |------|---------|
-| `.claude/commands/do.md` | Main orchestrator - routes work through roles |
-| `.claude/commands/dev.md` | Direct Dev invocation |
-| `.claude/commands/arch.md` | Direct Architect invocation (isolated) |
-| `.claude/commands/ux.md` | Direct Product/UX Lead invocation |
-| `.claude/roles/*.md` | Full role definitions with checklists |
+| `commands/do.md` | Main entry point — classifies and routes work |
+| `commands/dev.md` | Direct Dev invocation |
+| `commands/arch.md` | Direct Architect invocation (isolated) |
+| `commands/ux.md` | Direct Product/UX Lead invocation |
+| `roles/orchestrator.md` | Full orchestrator behavior and workflow tracks |
+| `roles/dev.md` | Dev role definition |
+| `roles/architect.md` | Architect role with review checklists |
+| `roles/product-ux-lead.md` | Product/UX Lead role definition |
 
-### v2.0 Memory & State
+### Memory & State (`.planning/`)
 
 | File | Purpose |
 |------|---------|
-| `.planning/ARCHITECT_MEMORY.md.template` | Accumulates patterns, auto-reject rules |
-| `.planning/STATE.md.template` | Cross-session state tracking |
-| `.planning/templates/*.md` | Feature planning templates |
+| `ARCHITECT_MEMORY.md.template` | Accumulating review knowledge |
+| `STATE.md.template` | Cross-session state tracking |
+| `templates/*.md` | Feature planning templates |
 
 ### Core Templates
 
 | File | Purpose |
 |------|---------|
-| `CLAUDE.md.template` | AI collaboration workflow entry point |
-| `ORCHESTRATION.md.template` | Full orchestration documentation |
-| `DEVELOPMENT_STRATEGY.md.template` | Product roadmap with phases |
+| `CLAUDE.md.template` | Entry point for AI collaboration |
+| `ORCHESTRATION.md.template` | Orchestration system documentation |
+| `DEVELOPMENT_STRATEGY.md.template` | Product roadmap structure |
 | `ARCHITECTURE.md.template` | Technical architecture |
 
 ### Automation
@@ -78,23 +92,28 @@ cp templates/ORCHESTRATION.md.template ORCHESTRATION.md
 |------|---------|
 | `scripts/setup-github-labels.sh` | Creates standardized GitHub labels |
 | `scripts/pre-commit-check.sh` | Quality gate helper |
-| `templates/.github/workflows/ci-macos-swift.yml` | CI workflow for Swift/macOS |
 
 ---
 
-## What Changed in v2.0
+## Workflow Tracks
 
-| Aspect | v1.0 | v2.0 |
-|--------|------|------|
-| **Workflow** | Manual role invocation | Automated via `/do` command |
-| **Architect** | Same session (sees Dev reasoning) | Isolated agent (independent review) |
-| **Memory** | None | Patterns accumulate over time |
-| **State** | DEVELOPMENT_STRATEGY.md only | .planning/STATE.md + feature dirs |
+| Track | When | Steps |
+|-------|------|-------|
+| **A (Full)** | Features with UX changes | UX Discovery → Plan → Architect Review → Implement → UAT → Code Review → Merge |
+| **B (Standard)** | Backend features, no UI | Plan → Architect Review → Implement → UAT → Code Review → Merge |
+| **C (Fast)** | Simple bugs, refactors | Implement → Code Review → Merge |
+| **D (Minimal)** | Typos, config, docs | Implement → Merge |
 
-**Backward compatible** — v1.0 manual workflows still work. See `MIGRATION.md` for upgrade paths.
+Human approval gates: Plan Approval, UAT, Merge (varies by track).
+
+---
+
+## v1.0 Compatibility
+
+Manual role invocation still works. See `MIGRATION.md` for upgrade paths.
 
 ---
 
 ## License
 
-MIT License - Use freely in your projects.
+MIT
