@@ -27,7 +27,7 @@
    # Copy from DayFlow's tmp folder to bootstrap repo
    cp -r ~/DayFlow/tmp/bootstrap-pr2/templates/.planning templates/
    cp ~/DayFlow/tmp/bootstrap-pr2/MIGRATION.md .
-   cp ~/DayFlow/tmp/bootstrap-pr2/README.md .
+   cp ~/DayFlow/tmp/bootstrap-pr2/README-BOOTSTRAP.md README.md
    ```
 
 4. **Commit the changes:**
@@ -72,7 +72,7 @@
 - `MIGRATION.md` - Complete v1.0 → v2.0 upgrade guide
 
 ### Updated Files:
-- `README.md` - Major v2.0 updates with comparison table
+- `README-BOOTSTRAP.md` → `README.md` (the updated bootstrap README with v2.0 marketing)
 
 ---
 

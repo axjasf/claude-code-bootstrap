@@ -1,0 +1,63 @@
+# Requirements: {{FEATURE_NAME}}
+
+## Acceptance Criteria (Testable)
+
+### Functional Requirements
+
+1. [ ] **{{CRITERION_1}}**
+   - Test: [How to verify]
+   - Priority: [P0/P1/P2]
+
+2. [ ] **{{CRITERION_2}}**
+   - Test: [How to verify]
+   - Priority: [P0/P1/P2]
+
+3. [ ] **{{CRITERION_3}}**
+   - Test: [How to verify]
+   - Priority: [P0/P1/P2]
+
+### Non-Functional Requirements
+
+- **Performance:** [Requirement]
+- **Accessibility:** [Requirement]
+- **Security:** [Requirement]
+- **Compatibility:** [Requirement]
+
+---
+
+## Edge Cases
+
+| Scenario | Expected Behavior | Priority |
+|----------|-------------------|----------|
+| Empty state | [What should happen] | P0/P1/P2 |
+| Error state | [What should happen] | P0/P1/P2 |
+| Boundary condition | [What should happen] | P0/P1/P2 |
+
+---
+
+## Out of Scope
+
+Explicitly NOT included in this feature:
+- [Thing 1]
+- [Thing 2]
+
+(These may be future enhancements, but not part of this PR)
+
+---
+
+## Dependencies
+
+**Requires:**
+- [Dependency 1]
+- [Dependency 2]
+
+**Blocks:**
+- [Issue/feature this blocks]
+
+---
+
+## Success Metrics
+
+How we'll know this feature succeeded:
+- [Metric 1]
+- [Metric 2]

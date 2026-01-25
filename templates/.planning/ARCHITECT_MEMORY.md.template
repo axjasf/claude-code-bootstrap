@@ -1,0 +1,118 @@
+# Architect Memory
+
+> **Purpose:** Growing knowledge base for {{PROJECT_NAME}} code reviews.
+> **Read before every review. Update after significant findings.**
+> **Last updated:** {{CURRENT_DATE}}
+
+---
+
+## {{PROJECT_NAME}} Patterns (Enforce These)
+
+### {{PATTERN_CATEGORY_1}}
+- **RULE:** {{Pattern description}}
+- **Auto-reject:** {{Anti-pattern}}
+- **Why:** {{Rationale}}
+
+### {{PATTERN_CATEGORY_2}}
+- **RULE:** {{Pattern description}}
+- **Auto-reject:** {{Anti-pattern}}
+- **Why:** {{Rationale}}
+
+<!-- Add more patterns as you discover them through reviews -->
+
+---
+
+## Auto-Reject List
+
+These are BLOCKING issues. Reject PR immediately if found:
+
+1. **Missing tests for changed behavior**
+2. **{{PROJECT_SPECIFIC_ANTI_PATTERN_1}}**
+3. **{{PROJECT_SPECIFIC_ANTI_PATTERN_2}}**
+4. **{{PROJECT_SPECIFIC_ANTI_PATTERN_3}}**
+
+---
+
+## Review Findings Log
+
+<!--
+Add entries after each review using this format:
+
+### [YYYY-MM-DD] PR #[N]: [Title]
+**Issue:** [What was wrong]
+**Pattern:** [What to check for in future]
+**Reference:** [Link to PR or commit]
+-->
+
+### Example Entry
+**Date:** 2025-01-15
+**PR:** #42
+**Title:** Add user authentication
+
+**Issue:** Authentication tokens stored in localStorage without encryption
+**Pattern:** Always check credential storage - use secure storage APIs, never plaintext in localStorage
+**Reference:** https://github.com/{{ORG}}/{{PROJECT_NAME}}/pull/42
+
+---
+
+## Common Code Smells
+
+Track recurring issues specific to {{PROJECT_NAME}}:
+
+### Performance
+- **Issue:** {{Description}}
+- **Check for:** {{How to spot it}}
+- **Fix:** {{Solution}}
+
+### Security
+- **Issue:** {{Description}}
+- **Check for:** {{How to spot it}}
+- **Fix:** {{Solution}}
+
+### Architecture
+- **Issue:** {{Description}}
+- **Check for:** {{How to spot it}}
+- **Fix:** {{Solution}}
+
+---
+
+## Project-Specific Quick Reference
+
+### Key Services
+| Service | Responsibility | Common Issues |
+|---------|----------------|---------------|
+| {{SERVICE_1}} | {{Purpose}} | {{Watch out for X}} |
+| {{SERVICE_2}} | {{Purpose}} | {{Watch out for Y}} |
+
+### Data Flow
+```
+{{Describe your app's data flow}}
+Example:
+User Input → Validation → Service → Database → Response
+```
+
+### Testing Strategy
+- **Unit tests:** {{What to test}}
+- **Integration tests:** {{What to test}}
+- **E2E tests:** {{What to test}}
+
+---
+
+## Usage Notes
+
+**When reviewing plans:**
+1. Read this file first
+2. Check if plan violates any patterns
+3. Add new patterns if you discover them
+
+**When reviewing code:**
+1. Read this file first
+2. Check auto-reject list
+3. Verify project-specific patterns
+4. Update findings log after review
+
+**When updating:**
+- Add date to "Last updated" at top
+- Use specific examples (file:line references)
+- Explain the "why" behind each pattern
+- Link to PR/commit where pattern was established

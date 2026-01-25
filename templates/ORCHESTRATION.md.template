@@ -1,0 +1,474 @@
+# {{PROJECT_NAME}} Orchestration System
+
+> **Purpose:** Coordinate AI agents through specialized roles with proper context isolation.
+
+---
+
+## Quick Start
+
+### Start Any Task
+```
+/do Add feature X
+```
+
+The Orchestrator runs in **fast-forward mode** by default:
+- Shows an execution graph at start
+- Auto-proceeds through steps
+- Pauses ONLY at: **UX Discovery**, **Plan Approval**, **UAT**, **Merge Approval**
+- Architect reviews always required (never skipped)
+
+### Direct Role Invocation
+```
+/ux [feature description]    # Product/UX Lead - discovery & specs
+/dev [task description]      # Dev - implementation & tests
+/arch [PR or plan to review] # Architect - independent review
+```
+
+---
+
+## Why Orchestration?
+
+### The Problem
+
+Without orchestration, AI collaboration breaks down:
+- **Inconsistent handoffs** — Humans forget to invoke the right role
+- **Self-review bias** — Same AI agent reviews its own work (useless)
+- **Context leakage** — Architect sees Dev's reasoning, rubber-stamps
+- **No accountability** — Unclear who did what in PR comments
+
+### The Solution
+
+Orchestration provides:
+- **Automated workflow** — Right roles at right time
+- **Context isolation** — Architect spawned separately, can't see Dev context
+- **Clear accountability** — Each role posts verdict to PR
+- **Human control** — Pauses at key decision points
+
+---
+
+## Core Concepts
+
+### Roles
+
+| Role | Focus | When Used |
+|------|-------|-----------|
+| **Orchestrator** | Coordinate workflow | Entry point for all work |
+| **Product/UX Lead** | Requirements + interaction design | New features, UX changes |
+| **Dev** | Implementation + tests | All coding work |
+| **Architect** | Independent review (isolated) | Final quality gate before merge |
+
+### Context Isolation (Critical)
+
+```
+┌─────────────────────────────────────┐
+│  Pool 1: Discovery & Build          │
+│  ├─ Product/UX Lead                 │
+│  └─ Dev                             │
+│     [Share context]                 │
+└─────────────────────────────────────┘
+
+┌─────────────────────────────────────┐
+│  Pool 2: Review (ISOLATED)          │
+│  └─ Architect                       │
+│     [Fresh context, no Dev memory]  │
+│     [Reviews as stranger would]     │
+└─────────────────────────────────────┘
+```
+
+**Why isolation matters:**
+- Dev is biased toward their own code
+- Architect catches what Dev missed
+- Fresh eyes find hidden assumptions
+
+**How it's enforced:**
+- Architect spawned via Task tool (separate agent)
+- Receives PR number only, not Dev's reasoning
+- No access to planning discussions
+
+### Workflow Tracks
+
+Right-size review depth based on complexity:
+
+| Track | Use For | Workflow |
+|-------|---------|----------|
+| **A: Full** | Features with UX | UX → Plan → Arch (plan) → Dev → UAT → Arch (code) → Human |
+| **B: Standard** | Backend features | Plan → Arch (plan) → Dev → UAT → Arch (code) → Human |
+| **C: Fast** | Simple bugs | Dev → Arch → Human |
+| **D: Minimal** | Trivial fixes | Dev → Human |
+
+**Note:** Architect review is ALWAYS required (even Track C/D). Never skip.
+
+---
+
+## Workflows
+
+### Track A: Full Process (Features with UX)
+
+```
+## Execution Graph: Track A
+
+┌──────────────────────────────────────────────────────────────┐
+│  Step 1: UX Lead     → Discovery + spec    ⏸ PAUSE: UX       │
+│  Step 2: Dev         → Write plan          ⏸ PAUSE: Plan     │
+│  Step 3: Architect   → Review plan (isolated)                │
+│  Step 4: Dev         → Implement + tests                     │
+│  Step 5: UX Lead     → Conduct UAT         ⏸ PAUSE: UAT      │
+│  Step 6: Architect   → Review code (isolated)                │
+│  Step 7: Human       → Approve merge       ⏸ PAUSE: Merge    │
+└──────────────────────────────────────────────────────────────┘
+
+Pauses at: UX Discovery, Plan Approval, UAT, Merge Approval
+```
+
+**When to use:** New UI features, complex features with user interaction
+
+**Steps:**
+1. **UX Discovery** — Product/UX Lead interviews human about requirements
+2. **Plan** — Dev writes implementation plan
+3. **Plan Review** — Architect reviews plan (isolated)
+4. **Implement** — Dev builds + writes tests
+5. **UAT** — Product/UX Lead tests with human using checklist
+6. **Code Review** — Architect reviews PR (isolated)
+7. **Merge** — Human approves final merge
+
+### Track B: Standard (Backend Features)
+
+```
+## Execution Graph: Track B
+
+┌──────────────────────────────────────────────────────────────┐
+│  Step 1: Dev         → Write plan          ⏸ PAUSE: Plan     │
+│  Step 2: Architect   → Review plan (isolated)                │
+│  Step 3: Dev         → Implement + tests                     │
+│  Step 4: UX Lead     → Conduct UAT         ⏸ PAUSE: UAT      │
+│  Step 5: Architect   → Review code (isolated)                │
+│  Step 6: Human       → Approve merge       ⏸ PAUSE: Merge    │
+└──────────────────────────────────────────────────────────────┘
+
+Pauses at: Plan Approval, UAT, Merge Approval
+```
+
+**When to use:** Backend features, APIs, no UI changes
+
+**Difference from Track A:** Skips UX discovery step (no UI design needed)
+
+### Track C: Fast Path (Simple Bugs)
+
+```
+## Execution Graph: Track C
+
+┌──────────────────────────────────────────────────────────────┐
+│  Step 1: Dev         → Fix + tests                           │
+│  Step 2: Architect   → Review (isolated)                     │
+│  Step 3: Human       → Approve merge       ⏸ PAUSE: Merge    │
+└──────────────────────────────────────────────────────────────┘
+
+Pauses at: Merge Approval only
+```
+
+**When to use:** Clear bug with obvious fix, refactoring
+
+**Difference:** Skips planning and UAT (still requires Architect review)
+
+### Track D: Minimal (Trivial Fixes)
+
+```
+## Execution Graph: Track D
+
+┌──────────────────────────────────────────────────────────────┐
+│  Step 1: Dev         → Fix                                   │
+│  Step 2: Human       → Approve merge       ⏸ PAUSE: Merge    │
+└──────────────────────────────────────────────────────────────┘
+
+Pauses at: Merge Approval only
+```
+
+**When to use:** Typos, documentation, config tweaks
+
+**Difference:** No Architect review (human reviews directly)
+
+---
+
+## Pause Points
+
+The Orchestrator pauses and waits for human input at these points:
+
+### 1. UX Discovery (Track A only)
+**When:** Before Product/UX Lead creates spec
+**Why:** Human interview required to understand needs
+**What to do:** Answer UX Lead's discovery questions
+
+### 2. Plan Approval (Track A, B)
+**When:** After Dev writes implementation plan
+**Why:** Validate approach before coding starts
+**What to do:** Review plan, approve or request changes
+
+### 3. UAT (Track A, B)
+**When:** After Dev implements, before Architect code review
+**Why:** Ensure implementation meets user needs
+**What to do:** Test the feature using the manual testing checklist
+
+### 4. Merge Approval (All tracks)
+**When:** After all reviews pass
+**Why:** Final human approval before merge
+**What to do:** Review PR summary, approve merge
+
+---
+
+## Role Definitions
+
+Full role instructions are in `.claude/roles/`:
+
+### Orchestrator
+- Classifies requests (Feature/Bug/Refactor/Trivial)
+- Shows execution graph
+- Invokes roles in correct order
+- Enforces context isolation
+- Reports status at pause points
+
+**Does NOT:** Write code, create specs, review PRs
+
+### Product/UX Lead
+- Conducts discovery (interviews human)
+- Defines requirements with testable acceptance criteria
+- Creates interaction design (wireframes if needed)
+- Conducts UAT (manual testing with human)
+
+**Does NOT:** Write code, review code
+
+### Dev
+- Plans implementation (for non-trivial work)
+- Writes code + tests
+- Commits frequently (one logical change per commit)
+- Hands off to Architect for review
+
+**Does NOT:** Merge PRs, skip tests, review own work
+
+### Architect
+- Reviews plans (before coding)
+- Reviews code (after coding)
+- Maintains independence (no Dev context)
+- Uses adversarial mindset (assume bugs exist)
+- Returns verdict: APPROVE / REJECT / NEED INFO
+
+**Does NOT:** Share context with Dev, approve without tests, merge PRs
+
+---
+
+## Artifacts
+
+What gets passed between roles:
+
+| From | To | Artifact | Format |
+|------|-----|----------|--------|
+| Product/UX Lead | Dev | Spec | File path (e.g., `docs/specs/FEATURE.md`) |
+| Dev | Architect (plan) | Plan | File path (e.g., `.planning/feature/PLAN.md`) |
+| Dev | Architect (code) | PR | PR number only |
+| Product/UX Lead | Architect | Spec | File path only |
+
+**Critical:** When passing to Architect, include ONLY:
+- File paths
+- PR/Issue numbers
+- CI status
+
+**Do NOT include:**
+- Dev's reasoning
+- Planning discussions
+- "Why" behind choices
+
+---
+
+## Example Session
+
+**Human:** "Add a dark mode toggle to settings"
+
+**Orchestrator:**
+```
+This is a Feature (with UX). Following Track A.
+
+## Execution Graph: Track A
+┌──────────────────────────────────────────────────────────────┐
+│  → Step 1: UX Lead     → Discovery         ⏸ PAUSE: UX       │
+│    Step 2: Dev         → Plan              ⏸ PAUSE: Plan     │
+│    Step 3: Architect   → Review plan                         │
+│    Step 4: Dev         → Implement                           │
+│    Step 5: UX Lead     → UAT               ⏸ PAUSE: UAT      │
+│    Step 6: Architect   → Review code                         │
+│    Step 7: Human       → Merge             ⏸ PAUSE: Merge    │
+└──────────────────────────────────────────────────────────────┘
+
+## ⏸ Paused: UX Discovery
+
+Ready for UX interview. Please answer the following questions...
+```
+
+**[Product/UX Lead interviews human, creates spec]**
+
+**Orchestrator:**
+```
+## Step 1: UX Lead - Discovery Complete
+✓ Spec created at docs/specs/DARK_MODE.md
+→ Proceeding to Step 2...
+
+## Step 2: Dev - Write Plan
+✓ Plan created at .planning/dark-mode/PLAN.md
+
+## ⏸ Paused: Plan Approval
+
+Review the implementation plan and approve to continue...
+```
+
+**Human:** "looks good"
+
+**Orchestrator:**
+```
+## Step 3: Architect - Review Plan (isolated context)
+✓ Plan approved
+→ Proceeding to Step 4...
+
+## Step 4: Dev - Implement
+✓ Implementation complete, PR #42 created
+→ Proceeding to Step 5...
+
+## ⏸ Paused: UAT
+
+Let's test the dark mode toggle together using the manual testing checklist...
+```
+
+**[UAT conducted, passes]**
+
+**Orchestrator:**
+```
+## Step 5: UX Lead - UAT Complete
+✓ UAT passed, results posted to PR
+→ Proceeding to Step 6...
+
+## Step 6: Architect - Code Review (isolated context)
+✓ Code approved
+→ Proceeding to Step 7...
+
+## ⏸ Paused: Merge Approval
+
+**Track:** A (Full) - COMPLETE
+**PR:** #42
+**CI:** Passing
+**Architect:** Approved
+**Spec:** docs/specs/DARK_MODE.md
+
+Ready for merge. Approve?
+```
+
+**Human:** "approve"
+
+**[Orchestrator coordinates merge]**
+
+---
+
+## Best Practices
+
+### For Humans
+
+1. **Trust the pause points** — Let orchestrator auto-proceed between pauses
+2. **Review artifacts at pauses** — Read plans, test features, review PRs
+3. **Clear feedback** — "Approve", "Change X", "Fix Y then resubmit"
+4. **Let Architect be harsh** — They're the quality gate, not a cheerleader
+
+### For Orchestrator
+
+1. **Show execution graph at start** — Sets expectations
+2. **Brief updates between pauses** — Don't overwhelm with detail
+3. **Clear pause announcements** — "⏸ Paused: [Reason]"
+4. **Track current step** — Update graph as you progress
+
+### For All Roles
+
+1. **Post verdicts to PR** — Use `gh pr comment <PR#> --body "## [Role]..."`
+2. **Be specific** — File:line references, concrete suggestions
+3. **Respect context isolation** — Architect gets artifacts only, no reasoning
+4. **Complete checklists** — Don't skip items
+
+---
+
+## Customization
+
+### Adjust Workflow Tracks
+
+Edit `.claude/roles/orchestrator.md` to:
+- Add/remove tracks
+- Change pause points
+- Adjust role sequence
+
+### Add/Remove Roles
+
+1. Create/delete role file in `.claude/roles/`
+2. Update orchestrator.md workflow tracks
+3. Update this ORCHESTRATION.md
+
+### Change Pause Behavior
+
+In `.claude/roles/orchestrator.md`:
+- Add pause points for more human control
+- Remove pause points for more automation
+- Adjust auto-proceed logic
+
+---
+
+## Troubleshooting
+
+### "Architect is too harsh"
+**This is correct.** Architect is your quality gate. They should be strict.
+
+### "Too many pauses"
+Adjust pause points in orchestrator.md. Consider removing Plan Approval for Track C.
+
+### "Architect keeps rejecting"
+Good! They're finding issues. Fix them and resubmit. Quality takes time.
+
+### "Can I skip UAT?"
+No. UAT validates requirements. Architect validates code. Both are required.
+
+### "Why can't Architect see Dev's reasoning?"
+Context isolation prevents self-review bias. Architect reviews as a fresh maintainer would.
+
+---
+
+## Migration from Manual Handoffs
+
+If you were using the v1.0 bootstrap with manual handoffs:
+
+1. **Keep existing workflow** — Orchestration is opt-in
+2. **Try `/do` for one task** — See how it feels
+3. **Gradually adopt** — Use orchestration for complex features, manual for simple fixes
+4. **Full adoption** — Switch to `/do` for all new work
+
+The manual handoff protocol still works. Orchestration adds automation on top.
+
+---
+
+## Key Files
+
+| File | Purpose |
+|------|---------|
+| `.claude/commands/do.md` | Orchestrator entry point |
+| `.claude/commands/dev.md` | Dev entry point |
+| `.claude/commands/arch.md` | Architect entry point |
+| `.claude/commands/ux.md` | UX Lead entry point |
+| `.claude/roles/orchestrator.md` | Full orchestration logic |
+| `.claude/roles/architect.md` | Architect review checklist |
+| `.claude/roles/dev.md` | Dev implementation guide |
+| `.claude/roles/product-ux-lead.md` | UX Lead discovery + UAT |
+| `ORCHESTRATION.md` | This document |
+
+---
+
+## Summary
+
+**Orchestration = Automated workflow + Context isolation + Clear accountability**
+
+- Use `/do` to start orchestrated work
+- Orchestrator auto-proceeds, pauses at key gates
+- Architect reviews independently (no Dev context)
+- All roles post verdicts to PR
+- Human approves final merge
+
+**Result:** Higher quality, less manual coordination, independent review.

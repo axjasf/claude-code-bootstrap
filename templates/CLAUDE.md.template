@@ -17,6 +17,29 @@ If continuing work from a previous session:
 - Verify what's already done vs. what's pending
 - Don't redo completed work
 
+## Orchestration System (Recommended)
+
+For coordinated multi-role work, use the orchestration system:
+
+```
+/do [task description]     # Orchestrator routes through roles automatically
+/ux [feature description]  # Product/UX Lead for discovery & specs
+/dev [task description]    # Dev for implementation & tests
+/arch [PR to review]       # Architect for independent review
+```
+
+**See `ORCHESTRATION.md` for full documentation.**
+
+**Key principles:**
+- Product/UX Lead and Dev share context. Architect is **isolated** (reviews independently without Dev's reasoning).
+- **Fast-forward mode** (default): Orchestrator auto-proceeds, pausing only at UX Discovery, Plan Approval, UAT, and Merge Approval.
+
+**Files:**
+- `.claude/commands/` — Slash command entry points
+- `.claude/roles/` — Full role definitions
+
+---
+
 ## Development Workflow
 
 ### Before Starting a New Task
@@ -61,6 +84,52 @@ If continuing work from a previous session:
 **You CAN:**
 - Start independent work on a new branch while waiting (ask first)
 
+## Context Isolation (CRITICAL)
+
+**The Architect MUST review independently, without seeing Dev's reasoning.**
+
+### Wrong Approach (Self-Review)
+```
+[Dev implements in Session 1]
+[Same Claude session switches to Architect role]
+[Architect reviews own work] ← USELESS (sees all Dev reasoning)
+```
+
+### Correct Approach (Independent Review)
+```
+[Dev implements in Session 1]
+[Spawn NEW isolated agent for Architect via Task tool]
+[Architect reviews without Session 1 context] ← VALUABLE
+```
+
+### How to Enforce
+
+When it's time for Architect review, use the **Task tool**:
+
+```
+Description: "Architect review PR #X"
+Subagent: "general-purpose"
+Prompt: |
+  You are Chief Architect for {{PROJECT_NAME}}.
+
+  1. Read .claude/roles/architect.md for full review instructions
+  2. Read ARCHITECTURE.md for technical context
+  3. Review PR #X independently
+
+  CRITICAL: You have NO context from Dev's planning or reasoning.
+  Review as if a stranger wrote this code.
+```
+
+**Never "act as Architect" in the same session where Dev worked.**
+
+**Why this matters:**
+- Dev is biased toward their own code
+- Architect catches what Dev missed
+- Fresh eyes find hidden assumptions
+- This is the #1 value of the role system
+
+---
+
 ## Role Handoff Protocol
 
 Each role must prompt the user with the next role after completing their work.
@@ -88,41 +157,63 @@ Each role must prompt the user with the next role after completing their work.
 
 ### Role Definitions
 
-**Staff Developer:**
-Owns implementation. Familiarize deeply with CLAUDE.md, all process/strategy/decision/UX guidance files, architecture docs, and the codebase. You drive development forward, write code, create PRs.
+> **Full role definitions:** See `.claude/roles/*.md` for complete instructions.
+> **Invoke via:** `/do`, `/ux`, `/dev`, `/arch` commands.
 
-**TestEng:**
-Reviews test coverage and quality. Verify edge cases are covered, tests are meaningful (not just checking "truthy"), and the test strategy is sound.
+**Product/UX Lead** (formerly ReqsEng + UX):
+- Conducts discovery (interviews human)
+- Defines requirements with testable acceptance criteria
+- Creates interaction design (wireframes when needed)
+- Conducts UAT (User Acceptance Testing) before Architect review
+- Full definition: `.claude/roles/product-ux-lead.md`
 
-**BuildEng:**
-Ensures CI/CD health. Verify build passes, tests pass, lint is clean. Flag infrastructure issues or flaky tests.
+**Staff Developer**:
+- Plans implementation (for non-trivial work)
+- Writes code + tests (tests are mandatory)
+- Commits frequently, pushes after each commit
+- Hands off to Architect for review
+- Full definition: `.claude/roles/dev.md`
 
-**Chief Architect:**
-Senior reviewer with end-to-end perspective. Familiarize deeply with repo, instructions, architecture, codebase. Reviews PRs for logic correctness, architectural fit, no regressions, feature completeness. Recommends merge after verification.
+**Chief Architect**:
+- Reviews plans (before coding starts)
+- Reviews code (after implementation)
+- **MUST be isolated** (spawned via Task tool, no Dev context)
+- Uses adversarial mindset (assume bugs exist)
+- Returns verdict: APPROVE / REJECT / NEED INFO
+- Full definition: `.claude/roles/architect.md`
 
-**ReqsEng:**
-Defines requirements. Clarifies user needs, writes acceptance criteria, resolves ambiguity before development starts. Use the AskUserQuestion tool iteratively to discuss and refine requirements with the user.
+**Note:** TestEng and BuildEng are now absorbed into Architect's review checklist (tests and CI are BLOCKING criteria).
 
 ### Handoff Prompts
+
+**Orchestrated workflow (recommended):** Use `/do` to let the Orchestrator handle handoffs automatically.
+
+**Manual handoffs (if not using orchestration):**
 
 After completing your work, end your message with the appropriate prompt:
 
 | Your Role | Happy Path | Feedback Loop |
 |-----------|------------|---------------|
-| **Staff Dev** | "→ Invoke **TestEng** to review PR #X" | *(receives feedback, fixes, re-submits)* |
-| **TestEng** | "→ Invoke **BuildEng** to verify CI on PR #X" | "→ Back to **Dev**: [test gaps]" |
-| **BuildEng** | "→ Invoke **Architect** for E2E review of PR #X" | "→ Back to **Dev**: [CI failures]" |
-| **Architect** | "E2E verified. Ready to merge PR #X?" | "→ Back to **Dev**: [logic/arch concern]" |
-| **ReqsEng** | "Requirements ready. → Invoke **Dev** to implement" | — |
+| **Product/UX Lead** | "Requirements ready. → Invoke **Dev** to implement" | *(refines requirements based on questions)* |
+| **Dev** | "Implementation + tests complete. → Invoke **Architect** to review PR #X" | *(receives feedback, fixes, re-submits)* |
+| **Architect** | "Verified. Ready to merge PR #X?" | "→ Back to **Dev**: [specific issues]" |
 
-### Architect E2E Review Checklist
+**Note:** When using orchestration (`/do`), the Orchestrator handles these handoffs automatically.
 
-When reviewing, Architect verifies:
+### Architect Review Checklist
+
+When reviewing, Architect verifies (see `.claude/roles/architect.md` for full checklist):
+
+**BLOCKING (must pass):**
+- [ ] **Tests exist** — All changed behavior has tests
+- [ ] **CI green** — Build, tests, lint all pass
+
+**Quality:**
 - [ ] **Logic correctness** — Does feature work as intended?
 - [ ] **No regressions** — Existing functionality intact?
 - [ ] **Architectural fit** — Follows patterns in ARCHITECTURE.md?
-- [ ] **Feature complete** — Matches requirements/issue description?
-- [ ] **CI green** — Tests + build + lint all pass?
+- [ ] **Spec compliance** — Matches requirements/spec
+- [ ] **Code quality** — Clear, simple, justified complexity
 
 ### Example Flow
 
@@ -386,10 +477,13 @@ Run `./scripts/pre-commit-check.sh` if available.
 | Document | Purpose | When to Read |
 |----------|---------|--------------|
 | `CLAUDE.md` | This file. How to work in this repo. | Always (entry point) |
+| `ORCHESTRATION.md` | **Orchestration system**. Workflows, context isolation, roles. | When using `/do` or role commands |
+| `.claude/roles/*.md` | **Full role definitions**. Detailed instructions per role. | When acting as a specific role |
 | `DEVELOPMENT_STRATEGY.md` | **Product roadmap**. Phases, tasks, decisions log. | Before starting any feature work |
 | `ARCHITECTURE.md` | **Technical architecture**. Data models, patterns, services. | Before modifying code structure |
 | GitHub Issues | **Bug/task tracking**. Use `gh issue list` | Before any bug fix work |
 
+**Always check `ORCHESTRATION.md` to understand the orchestrated workflow.**
 **Always check `DEVELOPMENT_STRATEGY.md` before starting new work.**
 **Always check `ARCHITECTURE.md` before making architectural changes.**
 **Always check `gh issue list` for open bugs and tasks.**

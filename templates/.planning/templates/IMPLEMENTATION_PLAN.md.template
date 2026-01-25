@@ -1,0 +1,99 @@
+# Implementation Plan: {{FEATURE_NAME}}
+
+**Developer:** {{DEVELOPER_NAME}}
+**Date:** {{DATE}}
+**Track:** [A/B/C/D]
+
+---
+
+## Overview
+
+**Goal:** [One sentence summary]
+
+**Approach:** [High-level strategy]
+
+---
+
+## Files to Create/Modify
+
+### New Files
+- `{{PATH}}/{{FILENAME}}.{{EXT}}` - [Purpose]
+- `{{PATH}}/{{FILENAME}}.test.{{EXT}}` - [Tests for above]
+
+### Modified Files
+- `{{PATH}}/{{FILENAME}}.{{EXT}}` - [What changes]
+
+---
+
+## Implementation Tasks
+
+Each task should be one atomic commit.
+
+### Task 1: {{TASK_NAME}}
+**File:** `{{PATH}}/{{FILENAME}}.{{EXT}}`
+**Changes:**
+- [Change 1]
+- [Change 2]
+
+**Tests to write:**
+- [ ] Test [behavior X]
+- [ ] Test [edge case Y]
+
+**Commit message:** `feat: {{Description}}`
+
+---
+
+### Task 2: {{TASK_NAME}}
+**File:** `{{PATH}}/{{FILENAME}}.{{EXT}}`
+**Changes:**
+- [Change 1]
+- [Change 2]
+
+**Tests to write:**
+- [ ] Test [behavior X]
+- [ ] Test [edge case Y]
+
+**Commit message:** `feat: {{Description}}`
+
+---
+
+## Testing Strategy
+
+### Unit Tests
+- Test [component/function]: [what to verify]
+- Test [component/function]: [what to verify]
+
+### Integration Tests
+- Test [workflow]: [what to verify]
+
+### Manual Testing
+- [ ] [Action to perform and expected result]
+- [ ] [Action to perform and expected result]
+
+---
+
+## Risks & Mitigations
+
+| Risk | Likelihood | Impact | Mitigation |
+|------|------------|--------|------------|
+| [Risk 1] | High/Med/Low | High/Med/Low | [How to handle] |
+| [Risk 2] | High/Med/Low | High/Med/Low | [How to handle] |
+
+---
+
+## Rollback Plan
+
+If this feature needs to be reverted:
+1. [Step to revert]
+2. [Step to revert]
+
+---
+
+## Questions for Review
+
+**Before starting implementation:**
+- [ ] [Question 1]
+- [ ] [Question 2]
+
+**Human approval required:** [Yes/No]
+**Architect plan review required:** [Yes - Track A/B / No - Track C/D]

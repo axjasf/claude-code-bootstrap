@@ -1,0 +1,134 @@
+# Verification: {{FEATURE_NAME}}
+
+**PR:** #{{PR_NUMBER}}
+**Track:** [A/B/C/D]
+
+---
+
+## Pre-Review Checklist (Dev)
+
+Before handing off to Architect:
+
+- [ ] All acceptance criteria implemented
+- [ ] Tests written and passing
+- [ ] Build passes locally
+- [ ] Lint clean
+- [ ] No debug code (console.log, print statements, etc.)
+- [ ] Commit messages follow format
+- [ ] PR description complete
+
+---
+
+## Manual Testing Checklist (UAT)
+
+**Conducted by:** Product/UX Lead + Human
+**Date:** [Date]
+
+### Happy Path
+- [ ] **Test 1:** [Action → Expected result]
+  - Actual: [What happened]
+  - Status: [Pass/Fail]
+
+- [ ] **Test 2:** [Action → Expected result]
+  - Actual: [What happened]
+  - Status: [Pass/Fail]
+
+### Edge Cases
+- [ ] **Empty state:** [Action → Expected result]
+  - Actual: [What happened]
+  - Status: [Pass/Fail]
+
+- [ ] **Error handling:** [Action → Expected result]
+  - Actual: [What happened]
+  - Status: [Pass/Fail]
+
+- [ ] **Boundary conditions:** [Action → Expected result]
+  - Actual: [What happened]
+  - Status: [Pass/Fail]
+
+### Accessibility
+- [ ] **Keyboard navigation:** [Can navigate with Tab/Enter/Space]
+  - Status: [Pass/Fail]
+
+- [ ] **Screen reader:** [Announces correctly]
+  - Status: [Pass/Fail]
+
+### Cross-browser/Platform (if applicable)
+- [ ] **Chrome:** [Works as expected]
+- [ ] **Firefox:** [Works as expected]
+- [ ] **Safari:** [Works as expected]
+- [ ] **Mobile:** [Works as expected]
+
+---
+
+## UAT Verdict
+
+**Result:** [PASS / FAIL]
+
+**Issues Found:**
+1. [Issue description] - [Severity: Blocking/High/Medium/Low]
+2. [Issue description] - [Severity: Blocking/High/Medium/Low]
+
+**Notes:**
+[Any additional observations]
+
+**Next Step:**
+- If PASS: Ready for Architect code review
+- If FAIL: Return to Dev with specific issues to fix
+
+---
+
+## Architect Review Checklist
+
+### Tests (BLOCKING)
+- [ ] Tests exist for all changed behavior
+- [ ] Edge cases covered (null, empty, boundary)
+- [ ] Undo/rollback behavior tested if applicable
+
+### Spec Compliance
+- [ ] Spec location: [path]
+- [ ] Each acceptance criterion implemented: [Y/N with evidence]
+- [ ] Edge cases from spec handled
+
+### Architecture
+- [ ] Follows patterns in ARCHITECTURE.md
+- [ ] No timing hacks or workarounds
+- [ ] State management is correct
+- [ ] Complexity is justified
+
+### Code Quality
+- [ ] Logic is correct (not just "tests pass")
+- [ ] No dead code or commented-out code
+- [ ] Consistent with existing patterns
+- [ ] Clear naming and structure
+
+### CI Status
+- [ ] Build passes
+- [ ] Tests pass
+- [ ] Lint clean (or only pre-existing violations)
+
+---
+
+## Architect Verdict
+
+**Verdict:** [APPROVE / REJECT / NEED INFORMATION]
+
+**Findings:**
+[Summary of review]
+
+**Next Step:**
+- If APPROVE: Ready for human merge approval
+- If REJECT: Return to Dev with specific issues
+- If NEED INFO: Questions for Dev/Human
+
+---
+
+## Deployment Notes
+
+**After merge:**
+- [ ] [Any post-deployment steps]
+- [ ] [Any monitoring to watch]
+- [ ] [Any feature flags to toggle]
+
+**Rollback procedure:**
+[If this needs to be reverted, how?]

@@ -1,0 +1,69 @@
+# Project State
+
+> **Purpose:** Track decisions, blockers, and status across sessions.
+> **Updated:** [Auto-update this when making changes]
+
+---
+
+## Active Work
+
+| Feature/Issue | Track | Current Step | Role | Status |
+|---------------|-------|--------------|------|--------|
+| - | - | - | - | - |
+
+**Tracks:** A (Full with UX), B (Standard), C (Fast), D (Minimal)
+
+---
+
+## Recent Decisions
+
+| Date | Decision | Rationale | Made By |
+|------|----------|-----------|---------|
+| - | - | - | - |
+
+---
+
+## Blockers
+
+| Issue | Blocked On | Since | Owner |
+|-------|------------|-------|-------|
+| - | - | - | - |
+
+---
+
+## Context for Next Session
+
+### Where We Left Off
+[Describe current state so next session can continue]
+
+### Next Steps
+1. [Next action]
+2. [Next action]
+
+### Open Questions
+- [ ] [Question needing human input]
+
+---
+
+## Role Transitions Log
+
+| Timestamp | From Role | To Role | Artifact Passed | Notes |
+|-----------|-----------|---------|-----------------|-------|
+| - | - | - | - | - |
+
+---
+
+## Session History
+
+### [YYYY-MM-DD] Session
+**Roles active:** [list]
+**Work done:**
+- [Item]
+- [Item]
+
+**Artifacts created:**
+- [Path]
+- [Path]
+
+**Handoff state:**
+[What the next session needs to know]

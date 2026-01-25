@@ -1,0 +1,56 @@
+# Feature: {{FEATURE_NAME}}
+
+## Context
+
+**Created:** {{DATE}}
+**Track:** [A/B/C/D]
+**Related Issues:** #{{ISSUE_NUMBER}}
+
+---
+
+## Problem Statement
+
+**User Story:**
+As a [user type], I want [goal], so that [benefit].
+
+**Current State:**
+[What happens today]
+
+**Desired State:**
+[What should happen instead]
+
+**Why This Matters:**
+[Business/user impact]
+
+---
+
+## Discovery Notes
+
+### User Interview Findings
+- [Key insight 1]
+- [Key insight 2]
+- [Key insight 3]
+
+### Technical Constraints
+- [Constraint 1]
+- [Constraint 2]
+
+### Edge Cases Identified
+- [Edge case 1]
+- [Edge case 2]
+
+---
+
+## Decisions Made
+
+| Decision | Rationale | Alternatives Considered |
+|----------|-----------|------------------------|
+| [Decision 1] | [Why] | [What we didn't choose and why] |
+
+---
+
+## References
+
+- Spec: [Path to UX spec or requirements doc]
+- Related PRs: #[PR numbers]
+- Design assets: [Link to wireframes/mockups]
