@@ -1,1 +1,11 @@
-templates/.DS_Store
+# macOS
+.DS_Store
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Local settings
+.claude/settings.local.json
